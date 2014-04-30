@@ -19,6 +19,10 @@ import javax.inject.Named;
 @RequestScoped 
 public class Hello {
 
+    //he añadido este atributo para probarlo desde la nueva jsf, "prueba.xhtml"
+    //que he construido para comprobar si la navegación es declarativa o no.
+    private String prueba="sin nombre";
+    
     private String name;
 
     public Hello() {
@@ -31,5 +35,13 @@ public class Hello {
     public void setName(String user_name) {
         this.name = user_name;
     }
+    
+    //métodos de prueba para probar la navegación entre páginas con JSF
+    public String getPrueba(){
+        return prueba;
+    }
+    
+    public void setPrueba(String value){
+        prueba=value;
+    }
 }
-

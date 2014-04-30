@@ -12,28 +12,55 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
+    
+    <!-- se trata de un tag jsf, pero no acabo de ver la diferencia exitente entre
+    utilizar esto o directamente el tag html head-->
+    <h:head> 
+        <!-- este tag ya es directamente un tag de html que el navegador sabe interpretar-->
         <title>Facelets Hello Greeting</title>
     </h:head>
-    <h:body>
-        <h:form>
+    <h:body>        
+        <h:form><!-- pinta el tag form de HTML-->
+            <!-- Dibuja el elmento "img" HTML. Utiliza el valor de clientId como valor del atributo "id".-->
             <h:graphicImage url="#{resource['images:duke.waving.gif']}" 
                             alt="Duke waving his hand"/>
             <h2>Hello, my name is Duke. What's yours?</h2>
-            <h:inputText id="username"
+            <!-- se decodifica como un elemento HTML de tipo intput -->
+            <!-- id: identificador del elemento -->
+            <!-- title: identificador del elemento -->
+            <!-- value: valor del texto (en este caso no se si se refiere a dónde se guarda) -->
+            <!-- required: es necesario introducir un valor para pasar de pantalla -->
+            <!-- requiredMessage: no es obligatorio, pero si existe es el texto presentado si no se cumple la validación -->
+            <!-- maxLength: número máximo de caraceres permitido --> 
+            <h:inputText id="username" 
                          title="My name is: "
                          value="#{hello.name}"
                          required="true"
                          requiredMessage="Error: A name is required."
-                         maxlength="25" />
-            <p></p>
-            <h:commandButton id="submit" value="Submit" 
-                             action="response">
-            </h:commandButton>
-            <h:commandButton id="reset" value="Reset" type="reset">
-            </h:commandButton>
+                         maxlength="25" />            
+            <p></p> <!-- ¿tiene sentido?-->
+            
+            <!--The h:commandButton representa un elemento HTML input de tipo "submit".-->
+            <!-- Leer la explicación en la ayuda de oracle, es un poco extensa .-->            
+            <!-- id:identificador del elemento -->
+            <!-- value: valor del elemento -->
+            <!-- action: acción invocada cuando se ejecuta el elemento --> 
+            <!-- type: puede ser de 3 tipos:
+                - reset
+                - button 
+                - submit
+                Si no se indica ningua, por defecto es submit -->
+            <!-- OJO. No veo cómo se relaciona la acción con el siguiente elemento. 
+            Parece que es directamente por el nombre del xhtml de destino.
+            Después de haber hecho la prueba con la nueva página, he visto que la 
+            navegación no es declarativa, es implícita. Supongo que si hay dos 
+            páginas con el mismo nombre las resolverá por paquete.-->
+            <!--h:commandButton id="submit" value="Submit" action="prueba"/-->
+            <h:commandButton id="submit" value="Submit" action="name"/>
+            <h:commandButton id="reset" value="Reset" type="reset"/>
         </h:form>
         <div class="messagecolor">
+            <!-- Es igual que h:message, pero se refiere a todos los mensajes. -->
             <h:messages showSummary="true" 
                         showDetail="false"
                         errorStyle="color: #d20005" 
